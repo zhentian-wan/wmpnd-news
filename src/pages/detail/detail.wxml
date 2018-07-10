@@ -1,0 +1,11 @@
+<!--pages/detail/detail.wxml-->
+<view>
+  {{details.title}}
+
+  <view wx:for="{{details.content}}"
+  wx:for-item="row"
+  wx:index="idx"
+  wx:key="idx">
+    {{row.text}}
+  </view>
+</view>

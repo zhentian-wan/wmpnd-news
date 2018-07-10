@@ -1,11 +1,12 @@
 {
-  "pages":[
-    "pages/index/index"
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail"
   ],
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ec08ab",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle":"white"
+    "navigationBarTitleText": "快读 资讯",
+    "navigationBarTextStyle": "white"
   }
 }
