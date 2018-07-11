@@ -1,21 +1,35 @@
-/**index.wxss**/
-.userinfo {
+/* news list */
+.news-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 0 10rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.news-item {
+  display: flex;
+  padding: 15rpx;
+  justify-content: space-between;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.news-item-image {
+  width: 300rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
+.news-item-text {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rpx;
+}
+
+.news-item-title {
+  font-size: 32rpx;
+  line-height: 44rpx;
+  opacity: 0.8;
+}
+
+.news-item-source {
+  opacity: 0.5;
+  font-size: 22rpx;
+  line-height: 34rpx;
+  margin-top: 5rpx;
 }

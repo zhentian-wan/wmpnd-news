@@ -8,14 +8,22 @@ wx:key="idx">
   {{category}}
 </view>
 
-<view class="">
-  <view
+<view class="news-list">
+  <navigator
+  class="news-item"
   data-item="{{news}}" 
   bindtap='openDetail'
   wx:for="{{list}}" 
   wx:for-item="news" 
-  wx:for-index="idx"
-  wx:key="idx">
-  {{news.title}}
-  </view>
+  wx:key="id">
+    <view class="news-item-text">
+      <view class="news-item-title">
+        {{news.title}}
+      </view>
+      <view class="news-item-source">
+      {{news.source}} {{news.date}}
+      </view>
+    </view>
+    <image class="news-item-image" mode='scaleToFill' src="{{news.firstImage}}"></image>
+  </navigator>
 </view>

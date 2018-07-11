@@ -1,5 +1,7 @@
 const { API_NEWS_LIST, DEFAULT_CATEGORY, CATEGORY_MAPPING } = require('../../utils/constants.js');
 
+const { formatTime } = require('../../utils/util.js')
+
 Page({
   data: {
     list: [],
@@ -20,7 +22,10 @@ Page({
       },
       success: (response) => {
         this.setData({
-          list: response.data.result
+          list: response.data.result.map(r => ({
+            ...r,
+            date: formatTime(new Date(r.date))
+          }))
         })
       }
     })
