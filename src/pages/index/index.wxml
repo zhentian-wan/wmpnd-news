@@ -1,19 +1,39 @@
 <!--index.wxml-->
-
-<view class=""
-wx:for="{{categories}}"
-wx:for-item="category"
-wx:for-index="idx"
-wx:key="idx">
-  {{category}}
+<view class="navigation-bar">
+  <view
+  data-item="{{category}}" 
+  bindtap='onTapCategory'
+  class="navigation-item {{category.selected ? 'active': ''}}"
+  wx:for="{{categories}}"
+  wx:for-item="category"
+  wx:for-index="idx"
+  wx:key="idx">
+    {{category.value}}
+  </view>
 </view>
+
+<view class="hot-news" data-item="{{list[0]}}"  bindtap="openDetail">
+  <image src="{{list[0].firstImage}}" style="width: 100%;"></image>
+  <text class="hot-text">热门</text>
+  <view class="hot-news-bottom">
+    <view class="hot-title">
+      {{list[0].title}}
+    </view>
+    <view class="hot-source">
+      {{list[0].source}} {{list[0].date}}
+    </view>
+  </view>
+
+</view>
+
 
 <view class="news-list">
   <navigator
   class="news-item"
   data-item="{{news}}" 
   bindtap='openDetail'
-  wx:for="{{list}}" 
+  wx:if="{{index > 0}}"
+  wx:for="{{list}}"
   wx:for-item="news" 
   wx:key="id">
     <view class="news-item-text">
@@ -21,9 +41,9 @@ wx:key="idx">
         {{news.title}}
       </view>
       <view class="news-item-source">
-      {{news.source}} {{news.date}}
+        {{news.source}} {{news.date}}
       </view>
     </view>
-    <image class="news-item-image" mode='scaleToFill' src="{{news.firstImage}}"></image>
+    <image style="width: 200rpx; height: 120rpx;"  src="{{news.firstImage}}"></image>
   </navigator>
 </view>

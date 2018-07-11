@@ -11,11 +11,11 @@ Page({
     this.getNews();
   },
   // Get news from API
-  getNews() {
+  getNews(category = DEFAULT_CATEGORY) {
     wx.request({
       url: `${API_NEWS_LIST}`,
       data: {
-        type: `${DEFAULT_CATEGORY}`
+        type: category
       },
       header: {
         'content-type': 'application/json'
@@ -35,6 +35,33 @@ Page({
     const newsItem = row.currentTarget.dataset.item;
     wx.navigateTo({
       url: `/pages/detail/detail?id=${newsItem.id}`
+    })
+  },
+  onTapCategory(event) {
+    const item = event.currentTarget.dataset.item;
+    this.selectCategory(item);
+    this.getNews(item.key);
+  },
+  selectCategory(item) {
+    const selectedItem = {
+      ...item,
+      selected: !item.selected
+    };
+    const index = this.data.categories
+      .findIndex(r => r.key === item.key);
+    const categories = this.data.categories.map(
+      r => ({
+        ...r,
+        selected: false
+      })
+    ).map(r => {
+      if (r.key === item.key) {
+        return selectedItem;
+      } 
+      return r;
+    });
+    this.setData({
+      categories
     })
   }
 })
