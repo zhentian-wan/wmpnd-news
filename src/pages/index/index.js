@@ -5,13 +5,17 @@ const { formatTime } = require('../../utils/util.js')
 Page({
   data: {
     list: [],
-    categories: CATEGORY_MAPPING
+    categories: CATEGORY_MAPPING,
+    selectedCategory: DEFAULT_CATEGORY
   },
   onLoad() {
     this.getNews();
   },
   // Get news from API
   getNews(category = DEFAULT_CATEGORY) {
+    wx.showLoading({
+      title: 'Loading...',
+    })
     wx.request({
       url: `${API_NEWS_LIST}`,
       data: {
@@ -21,14 +25,30 @@ Page({
         'content-type': 'application/json'
       },
       success: (response) => {
+        // close the loading dialog
+        wx.hideLoading();
+        // if loading success, set the data
         this.setData({
           list: response.data.result.map(r => ({
             ...r,
             date: formatTime(new Date(r.date))
           }))
         })
+      },
+      fail: (err) => {
+        // close the dialog and show the toast
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+        })
+      },
+      complete: () => {
+        wx.stopPullDownRefresh();
       }
     })
+  },
+  onPullDownRefresh() {
+    this.getNews(this.data.selectedCategory);
   },
   // Navigate to detail view
   openDetail(row) {
@@ -61,7 +81,8 @@ Page({
       return r;
     });
     this.setData({
-      categories
+      categories,
+      selectedCategory: selectedItem.key
     })
   }
 })
