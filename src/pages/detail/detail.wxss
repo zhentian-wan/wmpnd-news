@@ -1,1 +1,32 @@
 /* pages/detail/detail.wxss */
+.detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30rpx;
+}
+
+.detail-title {
+  font-size: 36rpx;
+  line-height: 50rpx;
+  color: black;
+  padding-bottom: 15rpx;
+}
+
+.detail-subtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: grey;
+  font-size: 22rpx;
+  line-height: 30rpx;
+}
+
+.detail-content {
+  font-size: 26rpx;
+}

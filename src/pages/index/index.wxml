@@ -28,7 +28,7 @@
 
 
 <view class="news-list">
-  <navigator
+  <view
   class="news-item"
   data-item="{{news}}" 
   bindtap='openDetail'
@@ -45,5 +45,5 @@
       </view>
     </view>
     <image style="width: 200rpx; height: 120rpx;"  src="{{news.firstImage}}"></image>
-  </navigator>
+  </view>
 </view>

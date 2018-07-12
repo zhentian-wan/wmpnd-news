@@ -1,8 +1,11 @@
 const { API_NEWS_DETAIL } = require('../../utils/constants.js');
 
+const { strong, div, p, img } = require('../../utils/util.js');
+
 Page({
   data: {
     details: '',
+    nodes: '',
     selectedId: null
   },
   onLoad(options) {
@@ -36,8 +39,10 @@ Page({
       },
       success: (response) => {
         wx.hideLoading();
+        const nodes = this.transformRichText(response.data.result.content);
         this.setData({
-          details: response.data.result
+          details: response.data.result,
+          nodes
         });
       },
       fail: () => {
@@ -50,5 +55,28 @@ Page({
         wx.stopPullDownRefresh();
       }
     });
+  },
+  transformRichText(contents) {
+    const head = '<div style="font-size: 15px">';
+    const htmlContent = contents.reduce((acc, curr) => {
+      acc += this.generateHTML(curr);
+      return acc;
+    }, '');
+    const tail = '</div>';
+    return `${head}${htmlContent}${tail}`;
+  },
+  generateHTML(obj) {
+    if(!obj) return '';
+    const {type, text = '', src = ''} = obj;
+    switch(type) {
+      case 'p': 
+        return p(obj.text);
+      case 'image': 
+        return img(src);
+      case 'strong':
+        return strong(text);
+      default:
+        return div(type, text);      
+    };
   }
 })

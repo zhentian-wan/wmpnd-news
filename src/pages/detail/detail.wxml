@@ -1,11 +1,22 @@
 <!--pages/detail/detail.wxml-->
-<view>
-  {{details.title}}
-
-  <view wx:for="{{details.content}}"
-  wx:for-item="row"
-  wx:index="idx"
-  wx:key="idx">
-    {{row.text}}
+<view class="detail-wrapper">
+  <view class="detail-header">
+    <view class="detail-title">
+    {{details.title}}
+    </view>
+    <view class="detail-subtitle">
+      <view>
+        {{details.source}} {{details.date}}
+      </view>
+      <view>
+        阅读 {{details.readCount}}
+      </view>
+    </view>
+    
   </view>
+
+  <rich-text 
+  nodes="{{nodes}}"
+  class="detail-content">
+  </rich-text>
 </view>
