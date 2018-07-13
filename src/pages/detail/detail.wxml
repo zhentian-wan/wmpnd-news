@@ -6,7 +6,7 @@
     </view>
     <view class="detail-subtitle">
       <view>
-        {{details.source}} {{details.date}}
+        {{details.source}} {{date}}
       </view>
       <view>
         阅读 {{details.readCount}}

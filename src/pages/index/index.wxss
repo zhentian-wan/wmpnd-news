@@ -73,9 +73,13 @@
   overflow: hidden;
 }
 
+.news-item-image {
+  flex:1;
+}
+
 .news-item-text {
   display: flex;
-  flex: 1;
+  flex: 3;
   flex-direction: column;
   margin-right: 24rpx;
 }

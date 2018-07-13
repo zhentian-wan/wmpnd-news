@@ -44,6 +44,6 @@
         {{news.source}} {{news.date}}
       </view>
     </view>
-    <image style="width: 200rpx; height: 120rpx;"  src="{{news.firstImage}}"></image>
+    <image mode="aspectFill" wx:if="{{news.firstImage}}" style="height: 120rpx;" src="{{news.firstImage}}" class="news-item-image"></image>
   </view>
 </view>

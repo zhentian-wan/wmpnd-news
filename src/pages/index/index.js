@@ -31,7 +31,8 @@ Page({
         this.setData({
           list: response.data.result.map(r => ({
             ...r,
-            date: formatTime(new Date(r.date))
+            date: formatTime(new Date(r.date)),
+            firstImage: r.firstImage || ''
           }))
         })
       },

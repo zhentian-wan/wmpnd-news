@@ -1,11 +1,12 @@
 const { API_NEWS_DETAIL } = require('../../utils/constants.js');
 
-const { strong, div, p, img } = require('../../utils/util.js');
+const { strong, div, p, img, formatTime } = require('../../utils/util.js');
 
 Page({
   data: {
     details: '',
     nodes: '',
+    date: '',
     selectedId: null
   },
   onLoad(options) {
@@ -20,9 +21,6 @@ Page({
         wx.navigateBack();
       }, 1500);
     }
-  },
-  onPullDownRefresh () {
-    this.getDetail(this.data.selectedId);
   },
   // Load detail API
   getDetail (id) {
@@ -42,7 +40,10 @@ Page({
         const nodes = this.transformRichText(response.data.result.content);
         this.setData({
           details: response.data.result,
-          nodes
+          nodes,
+          date: formatTime(
+            new Date(response.data.result.date)
+            )
         });
       },
       fail: () => {
